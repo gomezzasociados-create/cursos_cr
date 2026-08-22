@@ -526,6 +526,35 @@ app.put('/api/admin/users/:id', (req, res) => {
   res.json({ success: true, message: "Usuario actualizado", user });
 });
 
+app.put('/api/admin/teacher-name', (req, res) => {
+  const { teacherName } = req.body;
+  if (!teacherName || !teacherName.trim()) {
+    return res.status(400).json({ error: "El nombre de la maestra es obligatorio" });
+  }
+
+  const cleanName = teacherName.trim();
+  let teacherUser = store.users.find(u => u.role === 'Maestro');
+  if (teacherUser) {
+    teacherUser.name = cleanName;
+  } else {
+    teacherUser = {
+      id: "u_teacher",
+      name: cleanName,
+      email: "maestro@gomezz.space",
+      password: "maestro",
+      role: "Maestro",
+      courseId: "c_masaje_1",
+      currentPhase: 1
+    };
+    store.users.push(teacherUser);
+  }
+
+  io.emit('users_updated', { message: `Nombre de la Maestra actualizado a '${cleanName}'`, users: store.users, teacherName: cleanName });
+  io.emit('courses_updated', { message: `Nombre de la Maestra actualizado`, teacherName: cleanName });
+
+  res.json({ success: true, message: "Nombre de la Maestra actualizado con éxito", teacherName: cleanName, user: teacherUser });
+});
+
 app.delete('/api/admin/users/:id', (req, res) => {
   const userId = req.params.id;
   const index = store.users.findIndex(u => u.id === userId);

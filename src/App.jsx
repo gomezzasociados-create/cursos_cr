@@ -116,6 +116,7 @@ export default function App() {
         
         {activeView === 'portal' && (
           <PortalLoginView
+            currentTheme={theme}
             onLoginSuccess={handleLoginSuccess}
             onGoEcommerce={() => setActiveView('ecommerce')}
           />
@@ -123,12 +124,14 @@ export default function App() {
 
         {activeView === 'ecommerce' && (
           <EcommerceView
+            currentTheme={theme}
             onDirectLoginVirtual={handleDirectLoginVirtual}
           />
         )}
 
         {activeView === 'session' && currentUser && currentUser.role === 'Maestro' && (
           <TeacherView
+            currentTheme={theme}
             state={systemState}
             socket={socket}
             onRefreshState={fetchSystemState}
@@ -137,6 +140,7 @@ export default function App() {
 
         {activeView === 'session' && currentUser && (currentUser.role === 'Admin' || currentUser.role === 'Administrador') && (
           <AdminView
+            currentTheme={theme}
             state={systemState}
             onRefreshState={fetchSystemState}
           />
@@ -144,6 +148,7 @@ export default function App() {
 
         {activeView === 'session' && currentUser && (currentUser.role === 'Alumno Presencial' || currentUser.role === 'Alumno Virtual') && (
           <StudentView
+            currentTheme={theme}
             user={currentUser}
             state={systemState}
             socket={socket}

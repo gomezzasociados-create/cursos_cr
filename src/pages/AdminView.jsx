@@ -5,7 +5,7 @@ import {
   Library, FolderPlus, Code, Copy, Sparkles, X, FileCode, Check, Eye
 } from 'lucide-react';
 
-export default function AdminView({ state, onRefreshState }) {
+export default function AdminView({ state, onRefreshState, currentTheme = 'elegante' }) {
   const [activeTab, setActiveTab] = useState('editor'); // 'editor', 'courses', 'welcome', 'sales', 'users'
   const [sales, setSales] = useState([]);
   const [users, setUsers] = useState([]);
@@ -15,6 +15,7 @@ export default function AdminView({ state, onRefreshState }) {
 
   const [loading, setLoading] = useState(false);
   const [msg, setMsg] = useState(null);
+  const [savingTeacherName, setSavingTeacherName] = useState(false);
 
   // Forms State
   const [editPhaseForm, setEditPhaseForm] = useState({
@@ -253,6 +254,37 @@ export default function AdminView({ state, onRefreshState }) {
       }
     } catch (err) {
       alert("Error de conexión al eliminar plantilla");
+    }
+  };
+
+  const handleSaveTeacherName = async (e) => {
+    if (e) e.preventDefault();
+    if (!teacherNameInput || !teacherNameInput.trim()) {
+      alert("Por favor ingresa un nombre válido para la Maestra.");
+      return;
+    }
+
+    try {
+      setSavingTeacherName(true);
+      const res = await fetch('/api/admin/teacher-name', {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ teacherName: teacherNameInput.trim() })
+      });
+
+      const data = await res.json();
+      if (res.ok && data.success) {
+        setMsg({ type: 'success', text: `¡Nombre de la Maestra actualizado a '${data.teacherName}' exitosamente!` });
+        if (onRefreshState) onRefreshState();
+        fetchAdminData();
+      } else {
+        alert(data.error || "Error al actualizar el nombre de la Maestra.");
+      }
+    } catch (err) {
+      console.error("Error al guardar nombre de la Maestra:", err);
+      alert("Error de conexión al guardar el nombre de la Maestra.");
+    } finally {
+      setSavingTeacherName(false);
     }
   };
 
@@ -1039,10 +1071,49 @@ export default function AdminView({ state, onRefreshState }) {
 
       {/* --- TAB: USUARIOS --- */}
       {activeTab === 'users' && (
-        <div className="glass-panel">
-          <h3 style={{ margin: '0 0 16px 0', color: '#FFDF73', fontSize: '1.4rem', fontWeight: '800' }}>
-            👥 Usuarios Registrados ({users.length})
-          </h3>
+        <div>
+          {/* --- TARJETA DESTACADA: CONFIGURACIÓN DE LA MAESTRA --- */}
+          <div className="glass-panel" style={{ marginBottom: '24px' }}>
+            <h3 style={{ margin: '0 0 8px 0', color: '#FFDF73', fontSize: '1.35rem', fontWeight: '800', display: 'flex', alignItems: 'center', gap: '10px' }}>
+              👩‍🏫 Configuración del Instructor(a) / Maestra Principal
+            </h3>
+            <p style={{ margin: '0 0 16px 0', color: '#d0d0d0', fontSize: '0.9rem', lineHeight: '1.5' }}>
+              Actualiza aquí el nombre oficial de la instructora. Se sincronizará automáticamente en las proyecciones 4K en tiempo real, pantallas de alumnos y mensajes de bienvenida.
+            </p>
+            <form onSubmit={handleSaveTeacherName} style={{ display: 'flex', gap: '12px', alignItems: 'center', flexWrap: 'wrap' }}>
+              <input
+                type="text"
+                required
+                placeholder="Ej. Maestra Elena Gomez"
+                value={teacherNameInput}
+                onChange={(e) => setTeacherNameInput(e.target.value)}
+                style={{
+                  flex: '1',
+                  minWidth: '260px',
+                  padding: '12px 16px',
+                  background: '#09090c',
+                  border: '1.5px solid #D4AF37',
+                  borderRadius: '12px',
+                  color: '#fff',
+                  fontSize: '1rem',
+                  fontWeight: '700'
+                }}
+              />
+              <button
+                type="submit"
+                disabled={savingTeacherName}
+                className="gold-btn"
+                style={{ padding: '12px 24px', fontSize: '0.9rem' }}
+              >
+                <Save size={18} /> {savingTeacherName ? 'Guardando...' : 'Guardar Nombre de la Maestra'}
+              </button>
+            </form>
+          </div>
+
+          <div className="glass-panel">
+            <h3 style={{ margin: '0 0 16px 0', color: '#FFDF73', fontSize: '1.4rem', fontWeight: '800' }}>
+              👥 Usuarios Registrados ({users.length})
+            </h3>
           <div style={{ overflowX: 'auto' }}>
             <table style={{ width: '100%', borderCollapse: 'collapse', color: '#fff', fontSize: '0.9rem' }}>
               <thead>
@@ -1075,7 +1146,8 @@ export default function AdminView({ state, onRefreshState }) {
             </table>
           </div>
         </div>
-      )}
+      </div>
+    )}
 
       {/* --- MODAL 1: BIBLIOTECA DE CÓDIGO HTML --- */}
       {showHtmlLibraryModal && (
