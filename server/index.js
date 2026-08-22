@@ -4,6 +4,8 @@ import { Server } from 'socket.io';
 import path from 'path';
 import { fileURLToPath } from 'url';
 
+import fs from 'fs';
+
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
@@ -19,8 +21,15 @@ const io = new Server(httpServer, {
 app.use(express.json({ limit: '50mb' }));
 app.use(express.urlencoded({ limit: '50mb', extended: true }));
 
-// Serve static frontend dist folder
-const clientDistPath = path.resolve(__dirname, '../dist');
+// Serve static frontend dist folder with dynamic fallback path resolution
+let clientDistPath = path.resolve(__dirname, '../dist');
+if (!fs.existsSync(path.resolve(clientDistPath, 'index.html'))) {
+  const cwdDist = path.resolve(process.cwd(), 'dist');
+  if (fs.existsSync(path.resolve(cwdDist, 'index.html'))) {
+    clientDistPath = cwdDist;
+  }
+}
+console.log(`[Static Files] Servidor estático cargando dist desde: ${clientDistPath}`);
 app.use('/assets', express.static(path.resolve(clientDistPath, 'assets')));
 app.use(express.static(clientDistPath));
 
