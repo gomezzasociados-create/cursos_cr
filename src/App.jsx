@@ -12,50 +12,66 @@ export default function App() {
   const [currentUser, setCurrentUser] = useState(null);
   const [socket, setSocket] = useState(null);
   const [wsConnected, setWsConnected] = useState(false);
-  const [theme, setTheme] = useState(() => localStorage.getItem('app_theme') || 'elegante');
+  const [theme, setTheme] = useState(() => {
+    try {
+      return localStorage.getItem('app_theme') || 'elegante';
+    } catch (e) {
+      return 'elegante';
+    }
+  });
+
   const [systemState, setSystemState] = useState({
     currentPhasePresencial: 1,
     phases: []
   });
 
   useEffect(() => {
-    document.body.className = theme === 'spa' ? 'theme-spa' : 'theme-elegante';
-    localStorage.setItem('app_theme', theme);
+    try {
+      document.body.className = theme === 'spa' ? 'theme-spa' : 'theme-elegante';
+      localStorage.setItem('app_theme', theme);
+    } catch (e) {}
   }, [theme]);
 
   useEffect(() => {
     fetchSystemState();
 
-    const newSocket = io(window.location.origin, {
-      transports: ['websocket', 'polling']
-    });
+    let newSocket = null;
+    try {
+      const socketUrl = window.location.origin || '';
+      newSocket = io(socketUrl, {
+        transports: ['websocket', 'polling'],
+        reconnection: true
+      });
 
-    newSocket.on('connect', () => {
-      console.log('[WebSocket] Conectado al servidor en tiempo real');
-      setWsConnected(true);
-    });
+      newSocket.on('connect', () => {
+        console.log('[WebSocket] Conectado al servidor en tiempo real');
+        setWsConnected(true);
+      });
 
-    newSocket.on('disconnect', () => {
-      console.log('[WebSocket] Desconectado');
-      setWsConnected(false);
-    });
+      newSocket.on('disconnect', () => {
+        console.log('[WebSocket] Desconectado');
+        setWsConnected(false);
+      });
 
-    newSocket.on('phase_advanced', () => {
-      fetchSystemState();
-    });
+      newSocket.on('phase_advanced', () => {
+        fetchSystemState();
+      });
 
-    newSocket.on('phases_updated', () => {
-      fetchSystemState();
-    });
+      newSocket.on('phases_updated', () => {
+        fetchSystemState();
+      });
 
-    newSocket.on('courses_updated', () => {
-      fetchSystemState();
-    });
+      newSocket.on('courses_updated', () => {
+        fetchSystemState();
+      });
 
-    setSocket(newSocket);
+      setSocket(newSocket);
+    } catch (err) {
+      console.warn("WebSocket initialization warning:", err);
+    }
 
     return () => {
-      newSocket.disconnect();
+      if (newSocket) newSocket.disconnect();
     };
   }, []);
 
