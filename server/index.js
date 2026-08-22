@@ -20,7 +20,8 @@ app.use(express.json({ limit: '50mb' }));
 app.use(express.urlencoded({ limit: '50mb', extended: true }));
 
 // Serve static frontend dist folder
-const clientDistPath = path.join(__dirname, '../dist');
+const clientDistPath = path.resolve(__dirname, '../dist');
+app.use('/assets', express.static(path.resolve(clientDistPath, 'assets')));
 app.use(express.static(clientDistPath));
 
 function formatEmbedUrl(url) {
@@ -734,12 +735,18 @@ io.on('connection', (socket) => {
 
 // Catch-all SPA router fallback
 app.get('*', (req, res) => {
-  res.sendFile(path.join(clientDistPath, 'index.html'), (err) => {
+  if (req.path.startsWith('/api') || req.path.startsWith('/assets') || req.path.includes('.')) {
+    return res.status(404).send('Resource not found');
+  }
+
+  const indexPath = path.resolve(clientDistPath, 'index.html');
+  res.sendFile(indexPath, (err) => {
     if (err) {
+      console.error("Error al enviar index.html:", err);
       res.status(200).send(`
         <!DOCTYPE html>
         <html><body style="background:#000;color:#fff;font-family:sans-serif;padding:40px;">
-          <h2>Servidor Backend Híbrido en http://localhost:8083</h2>
+          <h2>Servidor Backend Híbrido escuchando en puerto ${PORT}</h2>
         </body></html>
       `);
     }
