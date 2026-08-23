@@ -185,7 +185,7 @@ export default function App() {
         transition: 'all 0.4s ease'
       }}>
         <p style={{ margin: 0 }}>
-          © 2026 Plataforma Educativa Híbrida • Gomez Systems AI Architecture. Servidor en Puerto 8083. Sincronización en Tiempo Real Activa.
+          © 2026 Plataforma Educativa Híbrida • Gomez Systems AI Architecture. Sincronización en Tiempo Real Activa.
         </p>
       </footer>
 
