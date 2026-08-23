@@ -81,7 +81,7 @@ export default function Navbar({ activeRole, wsConnected, user, onLogout, onGoHo
               )}
             </div>
             <p style={{ margin: 0, fontSize: '0.75rem', color: currentTheme === 'spa' ? '#e1bee7' : '#a0a0a0' }}>
-              Atención & Neuroventas • Sistema Interconectado
+              Sistema Interconectado
             </p>
           </div>
         </div>

@@ -65,13 +65,21 @@ const store = {
           title: "FASE 1 • RECEPCIÓN",
           subtitle: "Bienvenida y Anclaje Espacial",
           description: "Los primeros 30 segundos presenciales que determinan el valor percibido del servicio.",
-          theoryHtml: "",
+          theoryHtml: `<div className="premium-box"><div className="premium-box-title">🤝 Lenguaje Corporal de Alto Nivel</div><p className="box-text">Ruptura de barreras en mostrador y protocolo de bienvenida 4K.</p></div>`,
           videos: [
             {
               id: "v1_1",
               title: "Protocolo de Recepción 4K",
               url: formatEmbedUrl("https://www.youtube.com/watch?v=3lB9dP4HRPA"),
               duration: "08:45",
+              provider: "YouTube CDN",
+              quality: "1080p HLS"
+            },
+            {
+              id: "v1_2",
+              title: "Anclaje Espacial y Bienvenida 4K",
+              url: formatEmbedUrl("https://www.youtube.com/watch?v=3lB9dP4HRPA"),
+              duration: "06:20",
               provider: "YouTube CDN",
               quality: "1080p HLS"
             }
@@ -82,32 +90,100 @@ const store = {
           title: "FASE 2 • DIAGNÓSTICO",
           subtitle: "Lectura Emocional y Entrevista Clínica",
           description: "Cómo descubrir el verdadero dolor del cliente antes de pasar a la camilla.",
-          theoryHtml: "",
-          videos: []
+          theoryHtml: `<div className="premium-box"><div className="premium-box-title">🗣️ Técnica de Indagación F.O.R.D.</div><p className="box-text">Entrevista estructurada y mapa de inseguridades corporales.</p></div>`,
+          videos: [
+            {
+              id: "v2_1",
+              title: "Diagnóstico Clínico y Lectura Emocional 4K",
+              url: formatEmbedUrl("https://www.youtube.com/watch?v=3lB9dP4HRPA"),
+              duration: "10:15",
+              provider: "YouTube CDN",
+              quality: "1080p HLS"
+            },
+            {
+              id: "v2_2",
+              title: "Técnica de Indagación F.O.R.D. 4K",
+              url: formatEmbedUrl("https://www.youtube.com/watch?v=3lB9dP4HRPA"),
+              duration: "07:30",
+              provider: "YouTube CDN",
+              quality: "1080p HLS"
+            }
+          ]
         },
         {
           id: 3,
           title: "FASE 3 • ATMÓSFERA",
           subtitle: "Arquitectura Sensorial Extrema",
           description: "Mapeo detallado de los 5 sentidos para inducir estados alfa cerebrales.",
-          theoryHtml: "",
-          videos: []
+          theoryHtml: `<div className="premium-box"><div className="premium-box-title">🧠 Manipulación Ambiental Positiva</div><p className="box-text">Camilla a 36.5°C, aroma neuro-olfativo e iluminación penumbra.</p></div>`,
+          videos: [
+            {
+              id: "v3_1",
+              title: "Arquitectura Sensorial Extrema 4K",
+              url: formatEmbedUrl("https://www.youtube.com/watch?v=3lB9dP4HRPA"),
+              duration: "09:50",
+              provider: "YouTube CDN",
+              quality: "1080p HLS"
+            },
+            {
+              id: "v3_2",
+              title: "Mapeo Neuro-Olfativo y Binaural 4K",
+              url: formatEmbedUrl("https://www.youtube.com/watch?v=3lB9dP4HRPA"),
+              duration: "08:10",
+              provider: "YouTube CDN",
+              quality: "1080p HLS"
+            }
+          ]
         },
         {
           id: 4,
           title: "FASE 4 • CABINA",
           subtitle: "Coreografía del Contacto y Privacidad",
           description: "Cómo navegar la sesión garantizando máximo confort, pudor y resultados.",
-          theoryHtml: "",
-          videos: []
+          theoryHtml: `<div className="premium-box"><div className="premium-box-title">🧘 Protocolo de Pudor (Draping)</div><p className="box-text">Mantenimiento de contacto continuo y micro-chequeos de presión.</p></div>`,
+          videos: [
+            {
+              id: "v4_1",
+              title: "Coreografía del Contacto y Draping 4K",
+              url: formatEmbedUrl("https://www.youtube.com/watch?v=3lB9dP4HRPA"),
+              duration: "12:00",
+              provider: "YouTube CDN",
+              quality: "1080p HLS"
+            },
+            {
+              id: "v4_2",
+              title: "Protocolo de Pudor y Micro-Chequeos 4K",
+              url: formatEmbedUrl("https://www.youtube.com/watch?v=3lB9dP4HRPA"),
+              duration: "06:45",
+              provider: "YouTube CDN",
+              quality: "1080p HLS"
+            }
+          ]
         },
         {
           id: 5,
           title: "FASE 5 • DESPEDIDA SENSORIAL",
           subtitle: "El Aterrizaje del Sistema Nervioso",
           description: "Cómo devolverlos a la realidad suavemente para entregarlos al área de cierre.",
-          theoryHtml: "",
-          videos: []
+          theoryHtml: `<div className="premium-box"><div className="premium-box-title">🍵 Cierre Sensorial e Infusión</div><p className="box-text">Ritual de despedida presencial y recomendación para mantenimiento en casa.</p></div>`,
+          videos: [
+            {
+              id: "v5_1",
+              title: "El Aterrizaje del Sistema Nervioso 4K",
+              url: formatEmbedUrl("https://www.youtube.com/watch?v=3lB9dP4HRPA"),
+              duration: "07:15",
+              provider: "YouTube CDN",
+              quality: "1080p HLS"
+            },
+            {
+              id: "v5_2",
+              title: "Despedida Sensorial y Cierre 4K",
+              url: formatEmbedUrl("https://www.youtube.com/watch?v=3lB9dP4HRPA"),
+              duration: "05:40",
+              provider: "YouTube CDN",
+              quality: "1080p HLS"
+            }
+          ]
         }
       ]
     }
