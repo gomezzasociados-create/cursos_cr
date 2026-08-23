@@ -291,6 +291,46 @@ const store = {
   }
 };
 
+// DATA PERSISTENCE ENGINE (DISK JSON STORE)
+const storePath = path.resolve(__dirname, 'data/store.json');
+
+function ensureDataDir() {
+  const dir = path.dirname(storePath);
+  if (!fs.existsSync(dir)) {
+    fs.mkdirSync(dir, { recursive: true });
+  }
+}
+
+function saveStore() {
+  try {
+    ensureDataDir();
+    fs.writeFileSync(storePath, JSON.stringify(store, null, 2), 'utf-8');
+    console.log("💾 [Persistencia Disk JSON] store.json guardado exitosamente en el disco.");
+  } catch (err) {
+    console.error("Error al guardar store.json en disco:", err);
+  }
+}
+
+function loadStore() {
+  try {
+    ensureDataDir();
+    if (fs.existsSync(storePath)) {
+      const data = fs.readFileSync(storePath, 'utf-8');
+      const loaded = JSON.parse(data);
+      Object.assign(store, loaded);
+      console.log("💾 [Persistencia Disk JSON] Base de datos store.json cargada exitosamente desde el disco.");
+    } else {
+      saveStore();
+      console.log("💾 [Persistencia Disk JSON] Creado store.json inicial en el disco.");
+    }
+  } catch (err) {
+    console.error("Error al cargar store.json desde disco:", err);
+  }
+}
+
+// Cargar estado guardado al iniciar el servidor
+loadStore();
+
 // --- AUTHENTICATION API ---
 app.post('/api/auth/login', (req, res) => {
   const { email, password, role } = req.body;
@@ -401,6 +441,7 @@ app.put('/api/admin/courses/:id', (req, res) => {
   if (description !== undefined) course.description = description;
   if (imageUrl !== undefined) course.imageUrl = imageUrl;
 
+  saveStore();
   io.emit('courses_updated', { message: `Curso '${course.title}' actualizado`, courses: store.courses });
   res.json({ success: true, course });
 });
@@ -411,6 +452,7 @@ app.delete('/api/admin/courses/:id', (req, res) => {
   if (idx === -1) return res.status(404).json({ error: "Curso no encontrado" });
 
   const deleted = store.courses.splice(idx, 1)[0];
+  saveStore();
   io.emit('courses_updated', { message: `Curso '${deleted.title}' eliminado`, courses: store.courses });
   res.json({ success: true, message: "Curso eliminado" });
 });
@@ -432,6 +474,7 @@ app.post('/api/admin/courses/:courseId/phases', (req, res) => {
   };
 
   course.phases.push(newPhase);
+  saveStore();
   io.emit('phases_updated', { message: `Nueva fase creada`, phases: course.phases });
   res.json({ success: true, phase: newPhase });
 });
@@ -445,6 +488,7 @@ app.delete('/api/admin/courses/:courseId/phases/:phaseId', (req, res) => {
   if (idx === -1) return res.status(404).json({ error: "Fase no encontrada" });
 
   course.phases.splice(idx, 1);
+  saveStore();
   io.emit('phases_updated', { message: `Fase ${phaseId} eliminada`, phases: course.phases });
   res.json({ success: true, message: "Fase eliminada" });
 });
@@ -467,6 +511,7 @@ app.post('/api/admin/courses/:courseId/phases/:phaseId/videos', (req, res) => {
   };
 
   phase.videos.push(newVid);
+  saveStore();
   io.emit('phases_updated', { message: "Video agregado", phases: course.phases });
   res.json({ success: true, video: newVid });
 });
@@ -482,6 +527,7 @@ app.delete('/api/admin/courses/:courseId/phases/:phaseId/videos/:videoId', (req,
   if (idx === -1) return res.status(404).json({ error: "Video no encontrado" });
 
   phase.videos.splice(idx, 1);
+  saveStore();
   io.emit('phases_updated', { message: "Video eliminado", phases: course.phases });
   res.json({ success: true, message: "Video eliminado" });
 });
@@ -496,6 +542,7 @@ app.put('/api/admin/courses/:courseId/welcome', (req, res) => {
   if (welcomeStudentsMessage !== undefined) course.welcomeStudentsMessage = welcomeStudentsMessage;
   if (welcomeStudentsVideoUrl !== undefined) course.welcomeStudentsVideoUrl = formatEmbedUrl(welcomeStudentsVideoUrl);
 
+  saveStore();
   io.emit('courses_updated', { message: "Videos de bienvenida actualizados", courses: store.courses });
   res.json({ success: true, message: "Videos de bienvenida actualizados", course });
 });
@@ -520,6 +567,7 @@ app.post('/api/admin/html-library', (req, res) => {
   };
 
   store.htmlLibrary.unshift(newTemplate);
+  saveStore();
   io.emit('html_library_updated', { message: `Nueva plantilla '${newTemplate.title}' guardada`, library: store.htmlLibrary });
   res.json({ success: true, message: "Plantilla guardada exitosamente", template: newTemplate, library: store.htmlLibrary });
 });
@@ -530,6 +578,7 @@ app.delete('/api/admin/html-library/:id', (req, res) => {
   if (idx === -1) return res.status(404).json({ error: "Plantilla no encontrada" });
 
   const deleted = store.htmlLibrary.splice(idx, 1)[0];
+  saveStore();
   io.emit('html_library_updated', { message: `Plantilla '${deleted.title}' eliminada`, library: store.htmlLibrary });
   res.json({ success: true, message: "Plantilla eliminada", library: store.htmlLibrary });
 });
@@ -551,6 +600,7 @@ app.put('/api/admin/courses/:courseId/phases/:phaseId', (req, res) => {
   if (description !== undefined) phase.description = description;
   if (theoryHtml !== undefined) phase.theoryHtml = theoryHtml;
 
+  saveStore();
   io.emit('phases_updated', { message: `Fase ${phaseId} actualizada`, phases: course.phases });
   res.json({ success: true, message: `Fase ${phaseId} actualizada con éxito`, phase });
 });
@@ -593,6 +643,7 @@ app.post('/api/admin/users', (req, res) => {
   };
 
   store.users.push(newStudent);
+  saveStore();
   io.emit('users_updated', { message: `Nuevo alumno '${name}' registrado`, users: store.users });
   res.json({ success: true, message: `Alumno '${name}' registrado con éxito`, user: newStudent });
 });
@@ -608,6 +659,7 @@ app.put('/api/admin/users/:id', (req, res) => {
   if (whatsapp !== undefined) user.whatsapp = whatsapp;
   if (role !== undefined) user.role = role;
 
+  saveStore();
   io.emit('users_updated', { message: `Usuario ${user.name} actualizado`, users: store.users });
   res.json({ success: true, message: "Usuario actualizado", user });
 });
@@ -635,6 +687,7 @@ app.put('/api/admin/teacher-name', (req, res) => {
     store.users.push(teacherUser);
   }
 
+  saveStore();
   io.emit('users_updated', { message: `Nombre de la Maestra actualizado a '${cleanName}'`, users: store.users, teacherName: cleanName });
   io.emit('courses_updated', { message: `Nombre de la Maestra actualizado`, teacherName: cleanName });
 
@@ -647,6 +700,7 @@ app.delete('/api/admin/users/:id', (req, res) => {
   if (index === -1) return res.status(404).json({ error: "Usuario no encontrado" });
 
   const deletedUser = store.users.splice(index, 1)[0];
+  saveStore();
   io.emit('users_updated', { message: `Usuario '${deletedUser.name}' eliminado`, users: store.users });
   res.json({ success: true, message: "Usuario eliminado" });
 });
@@ -668,6 +722,7 @@ app.post('/api/teacher/next-phase', (req, res) => {
     u.examSubmitted = false;
   });
 
+  saveStore();
   io.emit('phase_advanced', {
     newPhase: store.currentPhasePresencial,
     message: `¡El Maestro ha avanzado el curso a la Fase ${store.currentPhasePresencial}!`
@@ -689,6 +744,7 @@ app.post('/api/teacher/prev-phase', (req, res) => {
     u.examSubmitted = false;
   });
 
+  saveStore();
   io.emit('phase_advanced', {
     newPhase: store.currentPhasePresencial,
     message: `El Maestro ha regresado el curso a la Fase ${store.currentPhasePresencial}.`
@@ -706,6 +762,7 @@ app.post('/api/teacher/reset-course', (req, res) => {
     u.examSubmitted = false;
   });
 
+  saveStore();
   io.emit('phase_advanced', {
     newPhase: 1,
     message: "¡El Maestro ha reiniciado el curso a la Fase 1 para una nueva clase!"
@@ -742,6 +799,7 @@ app.post('/api/exams/submit', (req, res) => {
     student.examSubmitted = true;
   }
 
+  saveStore();
   io.emit('exam_submitted_presencial', {
     studentId,
     studentName: student ? student.name : 'Alumno',
@@ -787,6 +845,7 @@ app.post('/api/ecommerce/checkout', (req, res) => {
   };
 
   store.sales.push(newSale);
+  saveStore();
 
   res.json({
     success: true,

@@ -1,0 +1,246 @@
+{
+  "currentPhasePresencial": 1,
+  "courses": [
+    {
+      "id": "c_masaje_1",
+      "title": "MasterClass: Técnica de Atención & Neuroventas en Spa",
+      "category": "Estética & Bienestar",
+      "price": 149,
+      "originalPrice": 299,
+      "badge": "MÁS VENDIDO",
+      "description": "El manual operativo definitivo para terapeutas y masajistas. Domina la recepción, diagnóstico clínico, neuroventas y la arquitectura sensorial extrema.",
+      "imageUrl": "https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=800&auto=format&fit=crop&q=80",
+      "welcomeTeacherVideoUrl": "https://www.youtube.com/embed/3lB9dP4HRPA",
+      "welcomeStudentsMessage": "¡Bienvenidas a la clase presencial en vivo! Sigan la teoría y los videos paso a paso.",
+      "welcomeStudentsVideoUrl": "https://www.youtube.com/embed/3lB9dP4HRPA",
+      "phases": [
+        {
+          "id": 1,
+          "title": "FASE 1 • RECEPCIÓN",
+          "subtitle": "Bienvenida y Anclaje Espacial",
+          "description": "Los primeros 30 segundos presenciales que determinan el valor percibido del servicio.",
+          "theoryHtml": "<div className=\"premium-box\"><div className=\"premium-box-title\">🤝 Lenguaje Corporal de Alto Nivel</div><p className=\"box-text\">Ruptura de barreras en mostrador y protocolo de bienvenida 4K.</p></div>",
+          "videos": [
+            {
+              "id": "v1_1",
+              "title": "Protocolo de Recepción 4K",
+              "url": "https://www.youtube.com/embed/3lB9dP4HRPA",
+              "duration": "08:45",
+              "provider": "YouTube CDN",
+              "quality": "1080p HLS"
+            },
+            {
+              "id": "v1_2",
+              "title": "Anclaje Espacial y Bienvenida 4K",
+              "url": "https://www.youtube.com/embed/3lB9dP4HRPA",
+              "duration": "06:20",
+              "provider": "YouTube CDN",
+              "quality": "1080p HLS"
+            }
+          ]
+        },
+        {
+          "id": 2,
+          "title": "FASE 2 • DIAGNÓSTICO",
+          "subtitle": "Lectura Emocional y Entrevista Clínica",
+          "description": "Cómo descubrir el verdadero dolor del cliente antes de pasar a la camilla.",
+          "theoryHtml": "<div className=\"premium-box\"><div className=\"premium-box-title\">🗣️ Técnica de Indagación F.O.R.D.</div><p className=\"box-text\">Entrevista estructurada y mapa de inseguridades corporales.</p></div>",
+          "videos": [
+            {
+              "id": "v2_1",
+              "title": "Diagnóstico Clínico y Lectura Emocional 4K",
+              "url": "https://www.youtube.com/embed/3lB9dP4HRPA",
+              "duration": "10:15",
+              "provider": "YouTube CDN",
+              "quality": "1080p HLS"
+            },
+            {
+              "id": "v2_2",
+              "title": "Técnica de Indagación F.O.R.D. 4K",
+              "url": "https://www.youtube.com/embed/3lB9dP4HRPA",
+              "duration": "07:30",
+              "provider": "YouTube CDN",
+              "quality": "1080p HLS"
+            }
+          ]
+        },
+        {
+          "id": 3,
+          "title": "FASE 3 • ATMÓSFERA",
+          "subtitle": "Arquitectura Sensorial Extrema",
+          "description": "Mapeo detallado de los 5 sentidos para inducir estados alfa cerebrales.",
+          "theoryHtml": "<div className=\"premium-box\"><div className=\"premium-box-title\">🧠 Manipulación Ambiental Positiva</div><p className=\"box-text\">Camilla a 36.5°C, aroma neuro-olfativo e iluminación penumbra.</p></div>",
+          "videos": [
+            {
+              "id": "v3_1",
+              "title": "Arquitectura Sensorial Extrema 4K",
+              "url": "https://www.youtube.com/embed/3lB9dP4HRPA",
+              "duration": "09:50",
+              "provider": "YouTube CDN",
+              "quality": "1080p HLS"
+            },
+            {
+              "id": "v3_2",
+              "title": "Mapeo Neuro-Olfativo y Binaural 4K",
+              "url": "https://www.youtube.com/embed/3lB9dP4HRPA",
+              "duration": "08:10",
+              "provider": "YouTube CDN",
+              "quality": "1080p HLS"
+            }
+          ]
+        },
+        {
+          "id": 4,
+          "title": "FASE 4 • CABINA",
+          "subtitle": "Coreografía del Contacto y Privacidad",
+          "description": "Cómo navegar la sesión garantizando máximo confort, pudor y resultados.",
+          "theoryHtml": "<div className=\"premium-box\"><div className=\"premium-box-title\">🧘 Protocolo de Pudor (Draping)</div><p className=\"box-text\">Mantenimiento de contacto continuo y micro-chequeos de presión.</p></div>",
+          "videos": [
+            {
+              "id": "v4_1",
+              "title": "Coreografía del Contacto y Draping 4K",
+              "url": "https://www.youtube.com/embed/3lB9dP4HRPA",
+              "duration": "12:00",
+              "provider": "YouTube CDN",
+              "quality": "1080p HLS"
+            },
+            {
+              "id": "v4_2",
+              "title": "Protocolo de Pudor y Micro-Chequeos 4K",
+              "url": "https://www.youtube.com/embed/3lB9dP4HRPA",
+              "duration": "06:45",
+              "provider": "YouTube CDN",
+              "quality": "1080p HLS"
+            }
+          ]
+        },
+        {
+          "id": 5,
+          "title": "FASE 5 • DESPEDIDA SENSORIAL",
+          "subtitle": "El Aterrizaje del Sistema Nervioso",
+          "description": "Cómo devolverlos a la realidad suavemente para entregarlos al área de cierre.",
+          "theoryHtml": "<div className=\"premium-box\"><div className=\"premium-box-title\">🍵 Cierre Sensorial e Infusión</div><p className=\"box-text\">Ritual de despedida presencial y recomendación para mantenimiento en casa.</p></div>",
+          "videos": [
+            {
+              "id": "v5_1",
+              "title": "El Aterrizaje del Sistema Nervioso 4K",
+              "url": "https://www.youtube.com/embed/3lB9dP4HRPA",
+              "duration": "07:15",
+              "provider": "YouTube CDN",
+              "quality": "1080p HLS"
+            },
+            {
+              "id": "v5_2",
+              "title": "Despedida Sensorial y Cierre 4K",
+              "url": "https://www.youtube.com/embed/3lB9dP4HRPA",
+              "duration": "05:40",
+              "provider": "YouTube CDN",
+              "quality": "1080p HLS"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "users": [
+    {
+      "id": "u_admin",
+      "name": "Administrador General",
+      "email": "admin@gomezz.space",
+      "password": "admin",
+      "role": "Admin",
+      "courseId": "c_masaje_1",
+      "currentPhase": 1
+    },
+    {
+      "id": "u_teacher",
+      "name": "Maestra Elena Gomez",
+      "email": "maestro@gomezz.space",
+      "password": "maestro",
+      "role": "Maestro",
+      "courseId": "c_masaje_1",
+      "currentPhase": 1
+    },
+    {
+      "id": "u_pres_1",
+      "name": "Camila Torres",
+      "email": "camila.presencial@gomezz.space",
+      "password": "presencial123",
+      "whatsapp": "+52 5511112233",
+      "role": "Alumno Presencial",
+      "courseId": "c_masaje_1",
+      "currentPhase": 1,
+      "examSubmitted": false
+    },
+    {
+      "id": "u_pres_2",
+      "name": "Mateo Lopez",
+      "email": "mateo@gmail.com",
+      "password": "presencial123",
+      "whatsapp": "+52 5522223344",
+      "role": "Alumno Presencial",
+      "courseId": "c_masaje_1",
+      "currentPhase": 1,
+      "examSubmitted": false
+    },
+    {
+      "id": "u_virt_1",
+      "name": "Sofia Ramirez",
+      "email": "sofia.virtual@gomezz.space",
+      "password": "virtual123",
+      "role": "Alumno Virtual",
+      "courseId": "c_masaje_1",
+      "currentPhase": 1
+    }
+  ],
+  "sales": [
+    {
+      "id": "sale_1",
+      "name": "Lucia Fernandez",
+      "email": "lucia@gmail.com",
+      "courseTitle": "MasterClass: Técnica de Atención & Neuroventas en Spa",
+      "amount": 149,
+      "date": "23/8/2026"
+    }
+  ],
+  "htmlLibrary": [
+    {
+      "id": "lib_template_1",
+      "title": "📘 Plantilla Oficial: Técnica de Atención & Neuroventas",
+      "description": "Estructura completa de 5 Fases con cajas de lenguaje corporal, Indagación F.O.R.D. y protocolo de pudor.",
+      "htmlCode": "<div className=\"header-section\"><h2>Módulo 1: Técnica de Atención & Neuroventas</h2><p className=\"header-desc\">El manual operativo definitivo.</p></div>",
+      "createdAt": "23/8/2026"
+    },
+    {
+      "id": "lib_template_2",
+      "title": "💆 Plantilla SPA: Arquitectura Sensorial & Draping",
+      "description": "Diseño especializado con caja de luces binaurales, aromaterapia neuro-olfativa y micro-chequeos.",
+      "htmlCode": "<div className=\"premium-box\"><div className=\"premium-box-title\">🧠 Manipulación Ambiental Positiva</div><p className=\"box-text\">Camilla a 36.5°C y música binaural Solfeggio.</p></div>",
+      "createdAt": "23/8/2026"
+    }
+  ],
+  "exams": {
+    "1": [
+      { "id": 1, "question": "¿En cuántos segundos el cerebro del cliente toma una decisión subconsciente sobre tu profesionalismo?", "options": ["A) 7 segundos", "B) 30 segundos", "C) 2 minutos", "D) 5 minutos"], "correctAnswer": 0 },
+      { "id": 2, "question": "¿Por qué debes romper la barrera del mostrador al recibir al cliente?", "options": ["A) Porque el mostrador crea una relación 'Cajero-Cliente' en lugar de 'Anfitrión-Invitado'", "B) Para revisar la ficha física", "C) Porque es más rápido", "D) Para que no vea el área de caja"], "correctAnswer": 0 },
+      { "id": 3, "question": "¿Qué puntos abarca el Triángulo de la Mirada para transmitir atención profunda sin intimidar?", "options": ["A) Ojo izquierdo, ojo derecho y puente de la nariz", "B) Labios y mentón", "C) Manos y rostro", "D) Manos y pies"], "correctAnswer": 0 },
+      { "id": 4, "question": "¿Cuál es el objetivo de hablar un 20% más lento y en tono más bajo que el cliente?", "options": ["A) Obligar a sus neuronas espejo a calmarse y sincronizar la energía", "B) Evitar que escuche las demás cabinas", "C) Demostrar superioridad técnica", "D) Ahorrar energía vocal"], "correctAnswer": 0 },
+      { "id": 5, "question": "¿Qué efecto psicológico tiene el Ritual de Descompresión con toallita tibia Oshibori?", "options": ["A) 'Limpia' el estrés y la carga del exterior", "B) Desinfecta solamente", "C) Perfuma la recepción", "D) Mantiene entretenido al cliente"], "correctAnswer": 0 },
+      { "id": 6, "question": "¿Cómo se debe reformular un retraso en la atención?", "options": ["A) 'Gracias por tu paciencia, estoy preparando tu cabina para que esté perfecta'", "B) 'Perdón por la demora, estuve ocupada'", "C) 'El cliente anterior llegó tarde'", "D) 'No te preocupes, ya casi termino'"], "correctAnswer": 0 },
+      { "id": 7, "question": "En la técnica F.O.R.D., ¿qué significa la letra 'O'?", "options": ["A) Ocupación (Occupation)", "B) Opinión", "C) Objetivos", "D) Observación"], "correctAnswer": 0 },
+      { "id": 8, "question": "En la técnica F.O.R.D., ¿qué significa la letra 'D'?", "options": ["A) Deseos / Sueños (Dreams)", "B) Dolores físico-musculares", "C) Diagnóstico preliminar", "D) Dinero disponible"], "correctAnswer": 0 },
+      { "id": 9, "question": "¿Cuál es la proporción ideal de escucha activa en la entrevista inicial?", "options": ["A) El cliente habla el 80% del tiempo y la terapeuta el 20%", "B) La terapeuta habla el 80%", "C) 50% y 50%", "D) Hablan al mismo tiempo"], "correctAnswer": 0 },
+      { "id": 10, "question": "¿Cómo responder ante una inseguridad corporal expuesta por la paciente?", "options": ["A) Validar con neutralidad absoluta asegurando que su cuerpo es normal", "B) Decir 'Estás perfecta' aunque sea falso", "C) Confirmar que sí se nota", "D) Cambiar de tema inmediatamente"], "correctAnswer": 0 },
+      { "id": 11, "question": "¿A qué temperatura debe mantenerse la camilla antes del contacto?", "options": ["A) Temperatura corporal (36.5°C)", "B) 20°C", "C) 45°C", "D) A temperatura ambiente fría"], "correctAnswer": 0 },
+      { "id": 12, "question": "¿Qué tipo de audio está PROHIBIDO durante la sesión sensorial?", "options": ["A) Música comercial con letras/voz", "B) Frecuencias Solfeggio 432Hz", "C) Sonidos orgánicos binaurales", "D) Cuencos tibetanos"], "correctAnswer": 0 },
+      { "id": 13, "question": "¿Qué iluminación se debe usar cuando la paciente está boca arriba?", "options": ["A) Penumbra indirecta con lámparas de sal o velas", "B) Luz blanca de techo directa", "C) Luz fluorescente", "D) Oscuridad 100% sin visibilidad"], "correctAnswer": 0 },
+      { "id": 14, "question": "¿Qué aroma neuro-olfativo promueve la relajación inmediata?", "options": ["A) Lavanda francesa y bergamota", "B) Eucalipto mentolado fuerte", "C) Alcohol etílico", "D) Perfumes sintéticos cítricos"], "correctAnswer": 0 },
+      { "id": 15, "question": "¿Qué debe hacer la terapeuta obligatoriamente antes del primer contacto físico?", "options": ["A) Friccionar sus palmas durante 15 segundos para calentar sus manos", "B) Usar guantes quirúrgicos fríos", "C) Soplar sobre el cliente", "D) Aplicar alcohol helado"], "correctAnswer": 0 },
+      { "id": 16, "question": "En el Protocolo de Pudor (Draping), ¿cuánta superficie corporal se descubre?", "options": ["A) Solo la zona exacta que se va a trabajar en ese momento", "B) Todo el cuerpo para mayor comodidad", "C) La mitad del cuerpo", "D) Nada, se trabaja sobre la ropa"], "correctAnswer": 0 },
+      { "id": 17, "question": "¿Cómo realizar la transición cuando el cliente debe darse la vuelta?", "options": ["A) Levantar la sábana en carpa visual y girar la mirada hacia la pared", "B) Mirar fijamente para ayudarlo", "C) Salir de la habitación por 10 minutos", "D) Quitar la sábana por completo"], "correctAnswer": 0 },
+      { "id": 18, "question": "¿En qué momento se realiza el micro-chequeo de presión?", "options": ["A) A los 3 minutos del inicio de la maniobra", "B) Cada 30 segundos durante toda la hora", "C) Únicamente al finalizar la sesión", "D) No se realiza chequeo"], "correctAnswer": 0 },
+      { "id": 19, "question": "Durante el masaje, si necesitas aplicar más producto, ¿cuál es la regla de oro?", "options": ["A) Mantener siempre una mano en contacto continuo con el cuerpo", "B) Quitar ambas manos de golpe", "C) Secar al cliente primero", "D) Dar un aplauso informativo"], "correctAnswer": 0 },
+      { "id": 20, "question": "¿Con qué detalle gustativo se cierra la despedida sensorial en recepción?", "options": ["A) Infusión aromática o té matcha", "B) Agua fría de grifo", "C) Café concentrado", "D) Ningún refresco"], "correctAnswer": 0 }
+    ]
+  }
+}
